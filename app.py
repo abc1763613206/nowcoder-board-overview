@@ -1,7 +1,11 @@
+import os
 from flask import Flask, request, jsonify
 from spider.spiders.nowcoder import NowCoder
 
 app = Flask(__name__)
+
+HOST = os.getenv("HOST", "0.0.0.0")
+PORT = os.getenv("PORT", 5000)
 
 
 @app.route("/index.html")
@@ -33,4 +37,4 @@ def frontend():
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.run(host=HOST, port=PORT)
