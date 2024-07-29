@@ -236,12 +236,12 @@ function renderBoard() {
       '<td class="rank"></td>' +
       '<td class="schoolrank"></td>' +
       '<td class="school">' +
-      escapeHtml(tm.organization) +
+      tm.organization +
       "</td>" +
       '<td class="team" members="' +
       tm.team_id +
       '">' +
-      escapeHtml(tm.name) +
+      tm.name +
       "</td>" +
       '<td class="solved">' +
       records[team].solved +
