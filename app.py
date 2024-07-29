@@ -24,8 +24,12 @@ def nowcoder(contest_id):
 
 
 @app.route("/")
-def hello_world():
-    return app.send_static_file("index.html")
+def frontend():
+    args = request.args
+    if "contestId" in args:
+        return app.send_static_file("index.html")
+    else:
+        return app.send_static_file("helper.html")
 
 
 if __name__ == "__main__":

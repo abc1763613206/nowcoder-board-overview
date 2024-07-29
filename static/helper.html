@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" />
+    <meta name="renderer" content="webkit" />
+
+    <link rel="stylesheet" href="https://registry.npmmirror.com/mdui/2/files/mdui.css">
+    <script src="https://registry.npmmirror.com/mdui/2/files/mdui.global.js"></script>
+
+    <title>Nowcoder Scoreboard | v1.0</title>
+</head>
+
+
+<body>
+    <mdui-top-app-bar>
+        <mdui-top-app-bar-title>Nowcoder Scoreboard</mdui-top-app-bar-title>
+        <div style="flex-grow: 1"></div>
+        <mdui-button-icon icon="home"></mdui-button-icon>
+    </mdui-top-app-bar>
+    <mdui-container>
+        <div class="main-input">
+            <mdui-text-field label="Match ID" id="source" clearable helper="请直接输入比赛 ID"></mdui-text-field>
+            <mdui-text-field label="Filter" id="filter" clearable helper="如果需要过滤，请输入过滤关键词"></mdui-text-field>
+        </div>
+        <div class="center">
+            <div class="buttons">
+                <mdui-button raised id="static-btn">静态页面</mdui-button>
+                <mdui-button raised variant="elevated" id="dynamic-btn">动态刷新</mdui-button>
+            </div>
+        </div>
+
+    </mdui-container>
+    <mdui-bottom-app-bar>
+        <div class="mdui-typo">Powered By Nowcoder Scoreboard</div>
+        <div style="flex-grow: 1"></div>
+        <div><a href="https://github.com/abc1763613206/nowcoder-board-overview">Source Code</a></div>
+    </mdui-bottom-app-bar>
+
+</body>
+<script type="module">
+    await Promise.allSettled([
+        customElements.whenDefined('mdui-button'),
+        customElements.whenDefined('mdui-card'),
+        customElements.whenDefined('mdui-checkbox')
+    ]);
+    const _source = document.querySelector("#source");
+    const _filter = document.querySelector("#filter");
+    const staticBtn = document.querySelector("#static-btn");
+    const dynamicBtn = document.querySelector("#dynamic-btn");
+
+
+    staticBtn.addEventListener("click", async () => {
+        const id = _source.value;
+        if (!id) {
+            mdui.snackbar({
+                message: "输入不能为空！",
+                position: "right-top"
+            });
+            return;
+        }
+        let numberId;
+        if (isNaN(id)) {
+            mdui.snackbar({
+                message: "ID 必须为数字！",
+                position: "right-top"
+            });
+            return;
+        } else {
+            numberId = id;
+        }
+        console.log(numberId);
+        if (!numberId) {
+            mdui.snackbar({
+                message: "无法获取ID！请检查输入是否正确！",
+                position: "right-top"
+            });
+            return;
+        }
+        if (_filter.value) {
+            window.open('/?contestId=' + numberId + "&searchName=" + _filter.value, '_blank');
+            return;
+        }
+        window.open('/?contestId=' + numberId, '_blank');
+    });
+    dynamicBtn.addEventListener("click", async () => {
+        const id = _source.value;
+        if (!id) {
+            mdui.snackbar({
+                message: "输入不能为空！",
+                position: "right-top"
+            });
+            return;
+        }
+        let numberId;
+        if (isNaN(id)) {
+            mdui.snackbar({
+                message: "ID 必须为数字！",
+                position: "right-top"
+            });
+            return;
+        } else {
+            numberId = id;
+        }
+        console.log(numberId);
+        if (!numberId) {
+            mdui.snackbar({
+                message: "无法获取ID！请检查输入是否正确！",
+                position: "right-top"
+            });
+            return;
+        }
+        if (_filter.value) {
+            window.open('/?contestId=' + numberId + "&searchName=" + _filter.value + "&scroll=10&refresh=30", '_blank');
+            return;
+        }
+        window.open('/?contestId=' + numberId + "&scroll=10&refresh=30", '_blank');
+    });
+</script>
+<style>
+    mdui-top-app-bar {
+        margin: 0 0.5rem 0;
+    }
+
+    .main-input {
+        margin: 2rem;
+    }
+
+    mdui-button {
+        margin-top: 0.5rem;
+    }
+
+    @media (max-width: 600px) {
+        .download-buttons {
+            display: flex;
+            flex-direction: column;
+        }
+
+    }
+
+    .center {
+        display: flex;
+        justify-content: center;
+    }
+
+    a {
+        text-decoration: none;
+    }
+</style>
+
+</html>
