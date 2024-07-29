@@ -45,14 +45,6 @@ function dorank() {
 
 var url = decodeURI(window.location.href);
 
-//var scrollParam=url.match(/.+[?&]scroll=(\d+).*/);
-//if(scrollParam != null) scrollParam=parseInt(scrollParam[1],10);
-//var filterParam=url.match(/.+[?&]filter=([a-z1-9]+).*/);
-//if(filterParam != null) filterParam=filterParam[1];
-//var refreshParam=url.match(/.+[?&]refresh=([a-z1-9]+).*/);
-//if(refreshParam != null) refreshParam=parseInt(refreshParam[1],10);
-//else refreshParam=5;
-
 var scrollParam = getQueryString("scroll");
 var filterParam = getQueryString("filter");
 var refreshParam = getQueryString("refresh");
