@@ -7,6 +7,19 @@ var teams = {};
 
 let timer = null;
 
+function escapeHtml(text) {
+  var map = {
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#039;",
+  };
+  return text.replace(/[&<>"']/g, function (m) {
+    return map[m];
+  });
+}
+
 function getQueryString(name) {
   let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
   let r = window.location.search.substr(1).match(reg);
@@ -223,12 +236,12 @@ function renderBoard() {
       '<td class="rank"></td>' +
       '<td class="schoolrank"></td>' +
       '<td class="school">' +
-      tm.organization +
+      escapeHtml(tm.organization) +
       "</td>" +
       '<td class="team" members="' +
       tm.team_id +
       '">' +
-      tm.name +
+      escapeHtml(tm.name) +
       "</td>" +
       '<td class="solved">' +
       records[team].solved +

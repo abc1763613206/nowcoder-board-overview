@@ -300,8 +300,7 @@ class NowCoder:
                         # run.first_blood = problem["firstBlood"]
                         runs.append(run)
         runs.sort(key=lambda x: x.timestamp)
-        # self.runs = runs
-        self.runs = Submissions()
+        self.runs = runs
         return self
 
     def to_dict(self):
